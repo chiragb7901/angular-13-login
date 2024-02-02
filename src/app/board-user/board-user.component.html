@@ -1,0 +1,53 @@
+<div class="container">
+  <!-- dropdown for search criteria -->
+  <select [(ngModel)]="searchCriteria">
+    <option value="firstName">First Name</option>
+    <option value="email">Email</option>
+    <option value="city">City</option>
+    <option value="phone">Phone</option>
+  </select>
+
+  <!-- input for search -->
+  <input [(ngModel)]="searchText" placeholder="Search..." (input)="search()" />
+
+  <!-- clear button -->
+  <button (click)="clearSearch()">Clear</button>
+
+  <header class="jumbotron">
+    <h1>User Data</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Street</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Actions</th> <!-- Add a new column for actions -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of content">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.street }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.city }}</td>
+          <td>{{ user.state }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+            <!-- Add buttons for Remove and Update -->
+            <button (click)="removeUser(user.id)">Remove</button>
+            <button (click)="openUpdateForm(user)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </header>
+</div>
